@@ -1,11 +1,11 @@
-import Navbar from './components/Navbar';
-
+import Navbar from './components/Header/ResponsiveAppBar';
+// impo rt Home from './components/Home';
 
 function App() {
   return (
     <>
       <Navbar />
-      <h3>Hello World</h3>
+      
     </>
   )
 }
