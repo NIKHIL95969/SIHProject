@@ -13,6 +13,9 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Link, NavLink, } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+// import { LogoDev } from '@mui/icons-material';
 
 const pages = ['Home', 'Projects', 'Trending'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -27,8 +30,14 @@ const darkTheme = createTheme({
 });
 
 function ResponsiveAppBar() {
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const location = useLocation();
+  const currentRoutePath = location.pathname;
+  // console.log(currentRoutePath);
+
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -44,6 +53,14 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  // const handleTheme = () => {
+  //   // console.log(darkTheme.palette.mode);
+  //   darkTheme  =  darkTheme.palette.mode === "dark" ? "light" : "dark" 
+  //   // setDarkTheme( (prev) => { ...prev, prev.palette.mode: theme })
+  //   // setDarkTheme({...darkTheme, (darkTheme.palette.mode = darkTheme.palette.mode === "dark" ? "light" : "dark"  })
+  //   // darkTheme.palette.mode = darkTheme.palette.mode === "dark" ? "light" : "dark";
+  // }
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -99,9 +116,16 @@ function ResponsiveAppBar() {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
+                  // <Link key={page} to={`/${ page === "Home" ? "": page.toLowerCase()}`} style={{ textDecoration: 'none' }} >
+                  <NavLink key={page} to={`/${ page === "Home" ? "": page.toLowerCase()}`} style={ { textDecoration: 'none', } }>
+                    <MenuItem  onClick={ handleCloseNavMenu }>
+                      <Typography textAlign="center"
+                        sx={{  display: 'block' , color: `${ currentRoutePath === `/${page === 'Home' ? "" : page.toLowerCase()}` ? "orange" : "white" }` ,  }}
+                      >
+                        {page}</Typography>
+                    </MenuItem>
+                  </NavLink>
+                  // </Link>
                 ))}
               </Menu>
             </Box>
@@ -126,13 +150,16 @@ function ResponsiveAppBar() {
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
-                >
-                  {page}
-                </Button>
+                // <Link key={page} to={`/${ page === "Home" ? "": page.toLowerCase()}`} style={{ textDecoration: 'none' }} >
+                <NavLink key={page} to={`/${ page === "Home" ? "": page.toLowerCase()}`} style={ { textDecoration: 'none', } }>
+                  <Button
+                    onClick={ handleCloseNavMenu}
+                    sx={{ my: 2, display: 'block' , color: `${ currentRoutePath === `/${page === 'Home' ? "" : page.toLowerCase()}` ? "orange" : "white" }` ,  }}
+                  >
+                    {page}
+                  </Button>
+                  </NavLink>
+                // </Link>
               ))}
             </Box>
 
@@ -159,10 +186,13 @@ function ResponsiveAppBar() {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
+                  <NavLink key={setting} to={`/${ setting === "Home" ? "": setting.toLowerCase()}`} style={ { textDecoration: 'none', color: `${ currentRoutePath === `/${setting.toLowerCase()}` ? "orange" : "white" }` } }>
+                    <MenuItem key={setting} onClick={handleCloseUserMenu} style={{ textDecoration: 'none', color: "inherit"}}>
+                      <Typography textAlign="center" color={ "inherit"} sx={{  display: 'block' ,  }}>{setting}</Typography>
+                    </MenuItem>
+                  </NavLink>
                 ))}
+                
               </Menu>
             </Box>
           </Toolbar>

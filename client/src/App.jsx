@@ -1,11 +1,11 @@
-import Navbar from './components/ResponsiveAppBar';
-import Home from './components/Home';
+import Navbar from './components/Header/ResponsiveAppBar';
+// impo rt Home from './components/Home';
 
 function App() {
   return (
     <>
       <Navbar />
-      <Home />
+      
     </>
   )
 }
