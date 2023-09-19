@@ -100,7 +100,7 @@ function Login() {
             </div>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{'  SignUp '}
+            Not a member?{''}
           </p>
         </div>
         </div>
