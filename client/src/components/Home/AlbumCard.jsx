@@ -43,7 +43,7 @@ export default function Album() {
                   />
                   <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      Project 
                     </Typography>
                     <Typography>
                       This is a media card. You can use this section to describe the
