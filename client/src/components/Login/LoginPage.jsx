@@ -5,7 +5,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 function Login() {
 
-  const [email, setEmail] = useState("")
+  const [username, setUsername] = useState("")
+  const [college_id, setCollege_Id] = useState("")
   const [password, setPassword] = useState("")
 
   const {setUser, user, login } = useAuth()
@@ -15,16 +16,20 @@ function Login() {
   const redirectLocation = location.state?.path || '/'
 
   const handleLogin = (e) => {
-  
-    // login({email, password})
-    setUser({
-      email,
-      password
-    })
-
-    setEmail("")
+    e.preventDefault()
+    login({username, college_id, password})
+    // setUser({
+    //   email,
+    //   password
+    // })
+    
+    setUsername("")
+    setCollege_Id("")
     setPassword("")
-    navigate(redirectLocation, {replace: true})
+
+    
+
+    console.log(user);
   }
 
   // if(user){
@@ -32,10 +37,12 @@ function Login() {
   // }
 
   useEffect( ()=>{
-    console.log(user, email, password);
+
     // if(user){
     //   window.location.replace("/")
     // }
+    console.log("Navigate to home");
+    if(user) navigate(redirectLocation, {replace: true})
   },[user])
 
   return (
@@ -50,15 +57,32 @@ function Login() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                Email address
+                Username
               </label>
               <div className="mt-2">
                 <input
                   id="email"
                   name="email"
                   // type="email"
-                  value={email}
-                  onChange={ (e)=> setEmail(e.target.value) }
+                  value={username}
+                  onChange={ (e)=> setUsername(e.target.value) }
+                  required
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                College ID
+              </label>
+              <div className="mt-2">
+                <input
+                  id="email"
+                  name="email"
+                  // type="email"
+                  value={college_id}
+                  onChange={ (e)=> setCollege_Id(e.target.value) }
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />

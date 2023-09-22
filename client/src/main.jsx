@@ -4,11 +4,11 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from './Layout.jsx';
 import Profile from './components/Profile/Profile.jsx';
-import AlbumCard from './components/Home/AlbumCard.jsx'
+import ProjectsList from './components/Home/ProjectsList.jsx'
 import PageNotFound from './components/NotFound/PageNotFound';
 import LoginPage from './components/Login/LoginPage'
 import { AuthProvider } from './Context/AuthContext';
-import AuthRequired from './components/AuthRequired';
+import AuthRequired from './components/Features/AuthRequired';
 
 // const [userDetails, setuserDetails] = useState(second)
 
@@ -22,7 +22,7 @@ const router  = createBrowserRouter([
         element: 
         (
         <>
-        <AlbumCard />
+        <ProjectsList />
         </>
         )
         ,
