@@ -1,17 +1,36 @@
-import React, { useEffect } from "react";
+import {useState,  useEffect } from "react";
 import { useAuth, AuthProvider } from "../../Context/AuthContext";
-
+import ProfileDetails from './ProfileDetails'
 const Profile = () => {
 
-  const { user } = useAuth()
+  const [userProfile, setProfile] = useState()
+
+  const { user, authToken } = useAuth()
 
   const handleGetUserDetails = () => {
-    console.log("user is" ,user);
+    console.log("user is" ,userProfile);
   }
 
   useEffect(() => {
     console.log( " user details" ,user);
-  }, [user])
+
+    fetch(`http://127.0.0.1:8000/profile/${user}`, {
+        method: 'GET',
+        headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `"Token "${authToken}`,
+        }
+      })
+      .then( response => response.json())
+      .then( data => {
+          console.log(data);
+          setProfile(data)
+      })
+      .catch(error => {
+          console.log(error);
+      });
+
+  }, [ userProfile ])
   
 
   return (
@@ -24,6 +43,9 @@ const Profile = () => {
         <h2 className="text-3xl font-bold mt-4">{user? user.email: ""}</h2>
 
         <h3 className="text-xl font-medium mt-4">Social Links</h3>
+
+        <ProfileDetails />
+
         <button
           // type="submit"
           onClick={ handleGetUserDetails }
