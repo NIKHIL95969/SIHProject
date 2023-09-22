@@ -20,7 +20,7 @@ import { useAuth } from '../../Context/AuthContext';
 // import { LogoDev } from '@mui/icons-material';
 
 const pages = ['Home', 'Projects', 'Trending'];
-const settings = ['Profile', 'Account', 'Dashboard',];
+const settings = ['Profile', 'Account', 'Dashboard', 'About',];
 
 const darkTheme = createTheme({
   palette: {
@@ -86,7 +86,6 @@ function ResponsiveAppBar() {
               variant="h6"
               noWrap
               component="a"
-              href="/"
               sx={{
                 mr: 2,
                 display: { xs: 'none', md: 'flex' },
@@ -97,7 +96,7 @@ function ResponsiveAppBar() {
                 textDecoration: 'none',
               }}
             >
-              SIH
+              <Link to='/'>SIH</Link>
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

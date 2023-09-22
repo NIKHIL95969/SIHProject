@@ -9,6 +9,9 @@ import PageNotFound from './components/NotFound/PageNotFound';
 import LoginPage from './components/Login/LoginPage'
 import { AuthProvider } from './Context/AuthContext';
 import AuthRequired from './components/Features/AuthRequired';
+import HeroSection from './components/Home/HeroSection'
+import AboutUs from './components/Pages/AboutUs'
+import CollectionPreview from './components/Pages/CollectionPreview';
 
 // const [userDetails, setuserDetails] = useState(second)
 
@@ -22,7 +25,9 @@ const router  = createBrowserRouter([
         element: 
         (
         <>
+        <HeroSection />
         <ProjectsList />
+        <CollectionPreview props={"Most Recent"}/>
         </>
         )
         ,
@@ -30,22 +35,27 @@ const router  = createBrowserRouter([
       {
         path: "projects",
         element: (
-          <div>
-            Projects
-          </div>
+          <>
+          <CollectionPreview props={"Most Rated Projects"}/>
+          <ProjectsList />
+          </>
         ),
       },
       {
         path: "trending",
         element: (
           <div>
-            <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati, quod. Omnis doloribus vero reprehenderit porro nam commodi doloremque voluptates atque voluptatibus magnam? Possimus aliquid voluptatum nobis omnis, sit eum et expedita nam eos iure eligendi repudiandae quaerat! Ex sunt modi, minima et quaerat dolore aliquam officia ad veritatis recusandae magni.</h1>
+            <CollectionPreview props={"Trending"}/>
           </div>
         ),
       },
       {
         path: "profile",
-        element: <AuthRequired>< Profile /> </AuthRequired>
+        element: < Profile />
+      },
+      {
+        path: "about",
+        element: <AboutUs />
       },
       {
         path: "*",
