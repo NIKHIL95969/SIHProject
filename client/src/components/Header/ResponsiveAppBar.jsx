@@ -14,7 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { Link, NavLink, } from 'react-router-dom';
+import { Link, NavLink, Navigate, useNavigate, } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthContext';
 // import { LogoDev } from '@mui/icons-material';
@@ -38,7 +38,8 @@ function ResponsiveAppBar() {
 
   const location = useLocation();
   const currentRoutePath = location.pathname;
-  const { logout } = useAuth()
+  const { logout, user } = useAuth()
+  const navigate = useNavigate()
   // console.log(currentRoutePath);
 
 
@@ -60,6 +61,10 @@ function ResponsiveAppBar() {
   const handleLogout = () => {
     window.alert("You are logout")
     logout()
+    
+  }
+  const handleLogin = () => {
+    navigate('/login')
   }
 
   // const handleTheme = () => {
@@ -217,11 +222,21 @@ function ResponsiveAppBar() {
                     </MenuItem>
                   </NavLink>
                 ))}
-                <NavLink style={ { textDecoration: 'none' } }>
+                {
+                  user ? (
+                    <NavLink style={ { textDecoration: 'none' } }>
                     <MenuItem onClick={ handleLogout } style={{ textDecoration: 'none', color: "inherit"}}>
                       <Typography textAlign="center" color={ "inherit"} sx={{  display: 'block' ,  }}>Logout</Typography>
                     </MenuItem>
                   </NavLink>
+                  ) : (
+                    <NavLink style={ { textDecoration: 'none' } }>
+                    <MenuItem onClick={ handleLogin } style={{ textDecoration: 'none', color: "inherit"}}>
+                      <Typography textAlign="center" color={ "inherit"} sx={{  display: 'block' ,  }}>Login</Typography>
+                    </MenuItem>
+                  </NavLink>
+                  )
+                }
                 
               </Menu>
             </Box>
