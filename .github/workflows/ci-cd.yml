@@ -1,46 +1,46 @@
-name: CI/CD for React Vite project with Vercel
+# name: CI/CD for React Vite project with Vercel
 
-on:
-  push:
-    branches:
-      - main
-      - client-setup
+# on:
+#   push:
+#     branches:
+#       - main
+#       - client-setup
 
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - name: go to client directory
-        run: cd client
+#       - name: go to client directory
+#         run: cd client
 
-      - name: Set package manager
-        run: echo "PACKAGE_MANAGER=$(yarn --version | grep -Po '(?<=yarn version ).*')" >> $GITHUB_ENV
+#       - name: Set package manager
+#         run: echo "PACKAGE_MANAGER=$(yarn --version | grep -Po '(?<=yarn version ).*')" >> $GITHUB_ENV
 
-      - name: Install dependencies
-        if: ${{ env.PACKAGE_MANAGER == 'npm' }}
-        run: npm install
+#       - name: Install dependencies
+#         if: ${{ env.PACKAGE_MANAGER == 'npm' }}
+#         run: npm install
 
-      - name: Install dependencies
-        if: ${{ env.PACKAGE_MANAGER == 'yarn' }}
-        run: yarn install
+#       - name: Install dependencies
+#         if: ${{ env.PACKAGE_MANAGER == 'yarn' }}
+#         run: yarn install
 
-      - name: Install Vite
-        run: yarn add vite
+#       - name: Install Vite
+#         run: yarn add vite
 
-      - name: Build project
-        if: ${{ env.PACKAGE_MANAGER == 'npm' }}
-        run: npm run build
+#       - name: Build project
+#         if: ${{ env.PACKAGE_MANAGER == 'npm' }}
+#         run: npm run build
 
-      - name: Build project
-        if: ${{ env.PACKAGE_MANAGER == 'yarn' }}
-        run: yarn run build
+#       - name: Build project
+#         if: ${{ env.PACKAGE_MANAGER == 'yarn' }}
+#         run: yarn run build
 
-      - name: Deploy project to Vercel
-        uses: vercel/vercel-action@v2
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+#       - name: Deploy project to Vercel
+#         uses: vercel/vercel-action@v2
+#         with:
+#           vercel-token: ${{ secrets.VERCEL_TOKEN }}
+#           project-id: ${{ secrets.VERCEL_PROJECT_ID }}
