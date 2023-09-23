@@ -17,7 +17,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Link, NavLink, Navigate, useNavigate, } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../Context/AuthContext';
-// import { LogoDev } from '@mui/icons-material';
+
 
 const pages = ['Home', 'Projects', 'Trending'];
 const settings = ['Profile', 'Account', 'Dashboard', 'About',];
