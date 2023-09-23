@@ -28,6 +28,9 @@ jobs:
         if: ${{ env.PACKAGE_MANAGER == 'yarn' }}
         run: yarn install
 
+      - name: Install Vite
+        run: yarn add vite
+
       - name: Build project
         if: ${{ env.PACKAGE_MANAGER == 'npm' }}
         run: npm run build
