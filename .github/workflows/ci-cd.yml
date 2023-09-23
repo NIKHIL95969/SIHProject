@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - client-setup
+
 
 jobs:
   build:
@@ -11,7 +13,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: go to client directory
         run: cd client
 
