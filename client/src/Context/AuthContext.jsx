@@ -41,6 +41,7 @@ export const AuthProvider = ( { children } ) => {
 
     const logout = () => {
         setUser(null)
+        setAuthToken(null)
     }
 
     const register = () => {

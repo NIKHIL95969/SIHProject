@@ -35,6 +35,7 @@ function ResponsiveAppBar() {
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const location = useLocation();
   const currentRoutePath = location.pathname;
@@ -60,8 +61,7 @@ function ResponsiveAppBar() {
 
   const handleLogout = () => {
     window.alert("You are logout")
-    logout()
-    
+    logout() 
   }
   const handleLogin = () => {
     navigate('/login')
@@ -74,7 +74,6 @@ function ResponsiveAppBar() {
   //   // setDarkTheme({...darkTheme, (darkTheme.palette.mode = darkTheme.palette.mode === "dark" ? "light" : "dark"  })
   //   // darkTheme.palette.mode = darkTheme.palette.mode === "dark" ? "light" : "dark";
   // }
-  const [searchTerm, setSearchTerm] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
