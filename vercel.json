@@ -1,4 +1,5 @@
 {
+    
     "buildCommand": "cd client && yarn install && yarn add vite && yarn run build",
     "outputDirectory": "dist"
 }
