@@ -17,11 +17,24 @@ jobs:
       - name: go to client directory
         run: cd client
 
+      - name: Set package manager
+        run: echo "PACKAGE_MANAGER=$(yarn --version | grep -Po '(?<=yarn version ).*')" >> $GITHUB_ENV
+
       - name: Install dependencies
+        if: ${{ env.PACKAGE_MANAGER == 'npm' }}
         run: npm install
 
+      - name: Install dependencies
+        if: ${{ env.PACKAGE_MANAGER == 'yarn' }}
+        run: yarn install
+
       - name: Build project
+        if: ${{ env.PACKAGE_MANAGER == 'npm' }}
         run: npm run build
+
+      - name: Build project
+        if: ${{ env.PACKAGE_MANAGER == 'yarn' }}
+        run: yarn run build
 
       - name: Deploy project to Vercel
         uses: vercel/vercel-action@v2
